@@ -1,0 +1,23 @@
+<h3><%= @controller_name %> <%= actionNameChange controller.action_name %></h3>
+<div class="box">
+	<div class="box-header">
+		<h2><i class="glyphicon glyphicon-align-justify"></i><span class="break"></span><%= t(:search)%></h2>
+		<div class="box-icon">
+			<a href="#" class="btn-minimize"><i class="glyphicon glyphicon-chevron-down"></i></a>
+			<a class="btn-close" href="#"><i class="glyphicon glyphicon-remove"></i></a>
+		</div>
+	</div>
+	<div style="display:none" class="box-content">
+		<%= render 'search_form' %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-xs-6 col-sm-3 col-md2">
+		<% if can? :create, User %>
+		<%= link_to new_user_path,:class=>"btn btn-primary" do %>
+		<i class="glyphicon glyphicon-plus"></i> <%= t(:link_new) %>
+		<% end %>
+		<% end %>
+	</div>
+	<%= paginate @users %>
+</div>

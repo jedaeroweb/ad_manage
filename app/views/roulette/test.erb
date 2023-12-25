@@ -1,0 +1,30 @@
+<%= form_for @roulette do |f| %>
+<% if @roulette.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	<h2><%= pluralize(@roulette.errors.count, "error") %> prohibited this sponsor from being saved:</h2>
+	<ul>
+		<% @user.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+
+
+  <div class="form-group">
+    <%= f.label :b %>
+    <%= f.number_field :b,:class=>"form-control" %>
+  </div>
+
+		<div class="form-group">
+			<%= f.submit :class=>'btn btn-primary' %>
+		</div>
+
+<% end %>
+
+
+
+<div>시행횟수를 입력해주세요</div>

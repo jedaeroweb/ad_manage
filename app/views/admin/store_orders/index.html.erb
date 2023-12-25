@@ -1,0 +1,99 @@
+<div class="row">
+	<h3 class="col-xs-12 col-sm-6"><%= @controller_name %> <%= actionNameChange controller.action_name %></h3>
+	<div class="col-xs-12 col-sm-6">
+		<%=form_tag admin_store_orders_path,:method=>:get,:id=>"type_search_form" do %>
+    <div class="input-group">
+     <div class="input-group-btn">
+     		<button aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle" type="button"><%=t(:label_title)%> &nbsp; <span class="caret"></span></button>
+     		<ul role="menu" class="dropdown-menu">
+     			<li><a href="?search_type=user_id"><%= t(:label_user_id )%></a></li>
+     			<li><a href="?search_type=mobile_num"><%= t(:label_mobile_num)%></a></li>
+     		</ul>
+			</div>
+			<select style="display:none" name="search_type">
+			<option value="user_id"><%=t(:label_title)%></option>
+			<option value="mobile_num"><%=t(:label_description )%></option>
+			</select>
+  	<input type="search" required="required" maxlength="60" placeholder="검색어를 써주세요" value="<%=params[:search_value] %>" class="form-control" name="search_value" />
+			<span class="input-group-btn">
+  			<%=button_tag t(:search),:type=>'submit',:class=>"btn btn-default" %>
+  		</span>
+  	</div>
+		<% end %>
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered table-striped">
+		<colgroup>
+			<col style="width:80px;" />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+			<col />
+			<% if can?(:update, StoreOrder) || can?(:delete, StoreOrder) %>
+			<col <%= raw manage_width(StoreOrder) %> />
+			<% end %>
+		</colgroup>
+		<thead>
+			<tr>
+				<th><%= t(:label_number) %></th>
+				<th><%= t(:label_user_id) %></th>
+				<th><%= t(:label_amount) %></th>
+				<th><%= t(:label_mobile_num) %></th>
+				<th><%= t(:status) %></th>
+				<th><%= t(:label_shipping_method) %></th>
+				<th><%= t(:shipping_flag) %></th>
+				<th><%= t(:return_flag) %></th>
+				<% if can?(:update, StoreOrder) || can?(:delete, StoreOrder) %>
+				<th><%= t(:label_manage)%></th>
+				<% end %>
+			</tr>
+		</thead>
+		<tbody>
+			<% unless @store_orders.empty? %>
+			<% @store_orders.each do |store_order| %>
+			<tr>
+				<td><%= link_to store_order.id,admin_store_order_path(store_order,params) %></td>
+				<td><%= link_to store_order.user_id,admin_store_order_path(store_order,params) %></td>
+				<td><%= link_to store_order.amount,admin_store_order_path(store_order,params) %></td>
+				<td><%= link_to store_order.customer_tel,admin_store_order_path(store_order,params) %></td>
+				<td><% if store_order.store_order_status %><%= link_to store_order.store_order_status.title,store_order_path(store_order,params) %><% end %></td>
+				<td><%= link_to store_order.shipping_method,admin_store_order_path(store_order,params) %></td>
+				<td><%= store_order.shipping_flag %></td>
+				<td><%= store_order.return_flag %></td>
+				<% if can?(:update, StoreOrder) || can?(:delete, StoreOrder) %>
+				<td> <% if can? :update, store_order %>
+				<%= link_to edit_store_order_path(store_order),:class=>"btn btn-default" do %> <i class="glyphicon glyphicon-pencil"></i> <%= t(:link_edit) %>
+				<% end %>
+				<% end %>
+				<% if can? :delete, store_order %>
+				<%= link_to admin_store_order_path(store_order), :method => :delete, :data => { :confirm =>t(:delete_confirm) },:class=>"btn btn-danger" do %> <i class="glyphicon glyphicon-trash"></i> <%= t(:link_delete) %>
+				<% end %>
+				<% end %> </td>
+				<% end %>
+			</tr>
+			<% end %>
+			<% else %>
+			<tr>
+				<td colspan="9"><%= t(:no_data)%></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div class="row">
+	<div class="col-xs-6 col-sm-3 col-md2">
+		<%= link_to new_admin_store_order_path,:class=>"btn btn-primary" do %>
+		<i class="glyphicon glyphicon-plus"></i> <%= t(:link_new) %>
+		<% end %>
+		<% unless @store_orders.empty? %>
+		<%=link_to admin_store_orders_path(:format=>"xls",:params=>params), :class=>"btn" do %>
+		<i class="glyphicon glyphicon-file"></i> <%= t(:link_download_excel) %>
+		<% end %>
+		<% end %>
+	</div>
+	<%= paginate @store_orders %>
+</div>

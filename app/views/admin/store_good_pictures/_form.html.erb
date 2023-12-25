@@ -1,0 +1,19 @@
+<%= form_for [:admin,@store_good,StoreGoodPicture.new] do |f| %>
+<%= f.hidden_field :filename,:value=>'asdgsadg' %>
+<div class="form-group">
+	<%= f.label :title,:class=>"form-control" %>
+	<%= f.text_field :title %>
+</div>
+<div class="form-group">
+	<%= f.label :photo %>
+	<%= f.file_field :photo,:required=>"required" %>
+	<%= f.hidden_field :photo_cache %>
+</div>
+<div class="form-group">
+	<%= f.label :flag %>
+	<%= f.check_box :flag %>
+</div>
+<div class="form-group actions">
+	<%= f.submit :class=>"btn btn-primary" %>
+</div>
+<% end %>

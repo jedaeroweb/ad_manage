@@ -1,0 +1,8 @@
+<section>
+	<ul>
+		<% @app_markets.each do |market| %>
+		<li><%=market.title %></li>
+		<% end %>
+	</ul>
+	<%= paginate @app_markets %>
+</section>

@@ -1,0 +1,29 @@
+<%= form_for [:admin,@app_log] do |f| %>
+<% if @app_log.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+	<h2><%= pluralize(@app_log.errors.count, "error") %> prohibited this app_log from being saved:</h2>
+	<ul>
+		<% @app_log.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<div class="form-group">
+	<%= f.label :app_log_type %>
+	<%= f.select :app_log_type_id, options_from_collection_for_select(AppLogType.where(:flag=>true).all(), 'id', 'name'),{},:class=>"form-control" %>
+</div>
+<div class="form-group">
+	<%= f.label :user %>
+	<%= f.text_field :user %>
+</div>
+<div class="form-group">
+	<%= f.label :log_value %>
+	<%= f.number_field :log_value %>
+</div>
+<div class="form-group actions">
+	<%= f.submit %>
+</div>
+<% end %>

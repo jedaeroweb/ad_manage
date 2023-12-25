@@ -1,0 +1,22 @@
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<div class="sl_show">
+
+<p>
+  <b>Title:</b>
+  <%= @attendance_event.title %>
+</p>
+<p>
+  <b><%=t(:label_image) %></b>
+  <%=image_tag @attendance_event.photo.large_thumb %>
+</p>
+<p>
+  <b>Flag:</b>
+  <%= @attendance_event.flag %>
+</p>
+</div>
+<% if can? :update, @attendance_event %>	
+<%= link_to t(:link_edit), edit_admin_attendance_event_path(@attendance_event) %> |
+<% end %>
+<%= link_to t(:link_list), admin_attendance_events_path %>

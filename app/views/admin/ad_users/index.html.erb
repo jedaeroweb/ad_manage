@@ -1,0 +1,26 @@
+<div class="row">
+	<h3 class="col-xs-12 col-sm-6"><%= @controller_name %> <%= actionNameChange controller.action_name %></h3>
+</div>
+<div class="table-responsive">
+<table>
+  <tr>
+    <th>Ad</th>
+    <th>User</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ad_users.each do |ad_user| %>
+  <tr>
+    <td><%= ad_user.ad %></td>
+    <td><%= ad_user.user %></td>
+    <td><%= link_to 'Show', ad_user %></td>
+    <td><%= link_to 'Edit', edit_admin_ad_user_path(ad_user) %></td>
+    <td><%= link_to 'Destroy', admin_ad_user_path(ad_user), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<%= link_to 'New Ad user', new_admin_ad_user_path %>

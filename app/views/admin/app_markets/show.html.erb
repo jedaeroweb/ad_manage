@@ -1,0 +1,25 @@
+<% if notice %>
+<%= render :partial => 'layouts/notice',:locals=>{:notice=>notice} %>
+<% end %>
+<div class="sl_show">
+	<p>
+		<b><%=t(:label_title) %></b>
+		<%= @app_market.title %>
+	</p>
+	<p>
+		<b><%=t(:label_flag) %></b>
+		<%=raw flagToString(@app_market.flag) %>
+	</p>
+	<p>
+		<b><%=t(:label_created_at) %></b>
+		<%= @app_market.created_at %>
+	</p>
+	<p>
+		<b><%=t(:label_updated_at) %></b>
+		<%= @app_market.created_at %>
+	</p>
+</div>
+<% if can? :update, @app_market %>
+<%= link_to t(:link_edit), edit_admin_app_market_path(@app_market) %> |
+<% end %>
+<%= link_to t(:link_list), admin_app_markets_path %>

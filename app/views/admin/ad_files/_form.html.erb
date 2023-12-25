@@ -1,0 +1,31 @@
+<%= form_for [:admin,@ad,AdFile.new],:html=>{:class=>"form-horizontal"} do |f| %>
+<div class="box">
+	<div class="box-header">
+		<h2><i class="glyphicon glyphicon-align-justify"></i><span class="break"></span><%= t('activerecord.models.ad_file')%></h2>
+		<div class="box-icon">
+			<a href="#" class="btn-minimize"><i class="glyphicon glyphicon-chevron-up"></i></a>
+		</div>
+	</div>
+	<div class="box-content">
+		<%= f.hidden_field :checksum,:value=>'asdgsadg' %>
+		<%= f.hidden_field :fileext,:value=>'asdgsadg' %>
+		<%= f.hidden_field :filetype,:value=>'awegweg'%>
+		<div class="form-group">
+			<%= f.label :ad_file_type_id %>
+			<%= f.select :ad_file_type_id, options_from_collection_for_select(AdFileType.where(:flag=>true).all(), 'id', 'title') %>
+		</div>
+		<div class="form-group">
+			<%= f.label :photo %>
+			<%= f.file_field :photo,:required=>"required" %>
+			<%= f.hidden_field :photo_cache %>
+		</div>
+		<div class="form-group">
+			<%= f.label :flag %>
+			<%= f.check_box :flag %>
+		</div>
+		<div class="actions">
+			<%= f.submit :class=>"btn btn-primary" %>
+		</div>
+	</div>
+</div>
+<% end %>

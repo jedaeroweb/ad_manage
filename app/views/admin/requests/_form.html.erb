@@ -1,0 +1,39 @@
+<%= form_for [:admin,@request] do |f| %>
+<% if @request.errors.any? %>
+<div id="error_explanation" class="alert alert-danger">
+	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	<h2><%= pluralize(@request.errors.count, "error") %> prohibited this request from being saved:</h2>
+	<ul>
+		<% @request.errors.full_messages.each do |msg| %>
+		<li>
+			<%= msg %>
+		</li>
+		<% end %>
+	</ul>
+</div>
+<% end %>
+<div class="form-group form-inline">
+	<%= f.label :user_id %></br/>
+	<%= f.number_field :user_id,:class=>"form-control",:required=>"required" %>
+	<%= link_to t(:user_id_find),'/admin/users/user_id_select?no_layout=true',:id=>'user_id_select',:title=>t(:user_id_find),:target=>'_blank',:class=>'btn btn-default modal_link',:'data-target'=>"#modal",:'data-toggle'=>"modal",:style=>'vertical-align:top' %>
+</div>
+<div class="form-group">
+	<%= f.label :request_setting_id %>
+	<%= f.select :request_setting_id, options_from_collection_for_select(RequestSetting.where(:flag=>true).all(), 'id', 'title',@request.request_setting_id),{},:class=>"form-control" %>
+</div>
+<div class="form-group">
+	<%= f.label :bank_id %>
+	<%= f.select :bank_id, options_from_collection_for_select(Bank.all, 'id', 'name'),{},:class=>"form-control" %>
+</div>
+<div class="form-group">
+	<%= f.label :account_number %>
+	<%= f.number_field :account_number,:class=>"form-control",:required=>"required" %>
+</div>
+<div class="form-group">
+	<%= f.label :request_type_id %>
+	<%= f.select :request_type_id, options_from_collection_for_select(RequestType.where(:flag=>true).all(), 'id', 'title',@request.request_type_id),{},:class=>"form-control" %>
+</div>
+<div class="form-group actions">
+	<%= f.submit :class=>"btn btn-primary"%>
+</div>
+<% end %>
