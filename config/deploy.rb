@@ -1,5 +1,5 @@
-set :application, "ad"
-set :repo_url, 'git@github.com:jedaeroweb/ad.git'
+set :application, "ad_manage"
+set :repo_url, 'git@github.com:jedaeroweb/ad_manage.git'
 set :branch, 'master'
 set :deploy_to, '/home/deploy/ad'
 
