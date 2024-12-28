@@ -39,13 +39,11 @@ gem "jbuilder"
 gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '>= 1.4.4', require: false
+gem "bootsnap", require: false
+gem 'bootstrap', '~> 5.3.1'
 gem 'devise'
 gem 'cancancan'
 gem 'kaminari'
-gem 'ui_datepicker-rails3'
-gem 'jquery-timepicker-addon-rails'
-gem 'json'
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
 gem 'groupdate'
@@ -53,9 +51,9 @@ gem 'awesome_nested_set'
 gem 'cancan'
 gem 'fastercsv'
 gem 'globalize'
+gem 'nokogiri', '>= 1.14.2'
 
 gem 'sassc-rails'
-gem 'bootstrap', '~> 5.3'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
