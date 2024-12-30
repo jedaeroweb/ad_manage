@@ -1,4 +1,4 @@
-class PushMessagesController < ApplicationController
+class Admin::PushMessagesController < Admin::AdminController
   load_and_authorize_resource
 
   def initialize(*params)
