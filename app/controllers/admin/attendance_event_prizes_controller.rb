@@ -1,28 +1,28 @@
-class Admin::AttendanceController < Admin::AdminController
+class Admin::AttendanceEventPrizesController < Admin::AdminController
   def initialize(*params)
     super(*params)
-    
+
     @sub_menu=t(:menu_attendance)
     @controller_name=t('activerecord.models.attendance_event_prize')
   end
-  
+
   # GET /attendance_settings
   # GET /attendance_settings.json
   def index
     unless params[:per_page].present?
-      params[:per_page]=10        
+      params[:per_page]=10
     end
-    
+
     if params[:format]=='xls'
-      params[:page]=nil 
-      params[:per_page]=50000  
-    end    
-    
+      params[:page]=nil
+      params[:per_page]=50000
+    end
+
     @attendance_settings = AttendanceSetting.order('id desc').page(params[:page]).per(params[:page])
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @attendance_settings }     
+      format.json { render json: @attendance_settings }
     end
   end
 
