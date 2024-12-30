@@ -46,14 +46,21 @@ gem 'cancancan'
 gem 'kaminari'
 gem 'carrierwave', '~> 2.0'
 gem 'mini_magick'
-gem 'groupdate'
-gem 'awesome_nested_set'
-gem 'cancan'
-gem 'fastercsv'
-gem 'globalize'
+gem 'sitemap_generator'
+gem 'meta-tags'
+gem 'gretel'
 gem 'nokogiri', '>= 1.14.2'
+gem 'impressionist'
+gem 'acts-as-taggable-on'
+gem 'acts_as_commentable_with_threading'
+gem 'acts_as_votable'
+gem 'globalize'
 
 gem 'sassc-rails'
+
+gem 'fastercsv'
+gem 'groupdate'
+gem 'awesome_nested_set'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
